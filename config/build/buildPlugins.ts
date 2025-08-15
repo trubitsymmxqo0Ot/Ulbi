@@ -5,11 +5,12 @@ import { BuildOptions } from "./types/types";
 
 export function buildPlugins({
   paths,
+  isDev,
 }: BuildOptions): Configuration["plugins"] {
   return [
     new HtmlWebpackPlugin({
       template: paths.html,
-      filename: "[name].[contenthash].html",
+      filename: isDev ? "index.html" : "[name].[contenthash].html",
     }),
     new webpack.ProgressPlugin(),
   ];
